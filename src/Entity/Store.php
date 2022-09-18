@@ -42,9 +42,13 @@ class Store
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'stores')]
     private Collection $categories;
 
+    #[ORM\OneToMany(mappedBy: 'store', targetEntity: Opinion::class)]
+    private Collection $opinions;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->opinions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -173,6 +177,36 @@ class Store
     public function removeCategory(Category $category): self
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Opinion>
+     */
+    public function getOpinions(): Collection
+    {
+        return $this->opinions;
+    }
+
+    public function addOpinion(Opinion $opinion): self
+    {
+        if (!$this->opinions->contains($opinion)) {
+            $this->opinions->add($opinion);
+            $opinion->setStore($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOpinion(Opinion $opinion): self
+    {
+        if ($this->opinions->removeElement($opinion)) {
+            // set the owning side to null (unless already changed)
+            if ($opinion->getStore() === $this) {
+                $opinion->setStore(null);
+            }
+        }
 
         return $this;
     }
