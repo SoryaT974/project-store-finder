@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -33,10 +34,14 @@ class Category
     #[ORM\ManyToMany(targetEntity: Store::class, mappedBy: 'categories')]
     private Collection $stores;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageUrl = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->stores = new ArrayCollection();
+        $this->createdDate = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -145,6 +150,18 @@ class Category
         if ($this->stores->removeElement($store)) {
             $store->removeCategory($this);
         }
+
+        return $this;
+    }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(?string $imageUrl): self
+    {
+        $this->imageUrl = $imageUrl;
 
         return $this;
     }

@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -37,6 +38,11 @@ class User
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedDate = null;
+
+    public function __construct()
+    {
+        $this->createdDate = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {

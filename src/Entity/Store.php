@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\StoreRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\StoreRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: StoreRepository::class)]
 class Store
@@ -45,10 +46,14 @@ class Store
     #[ORM\OneToMany(mappedBy: 'store', targetEntity: Opinion::class)]
     private Collection $opinions;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageUrl = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->opinions = new ArrayCollection();
+        $this->createdDate = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -207,6 +212,18 @@ class Store
                 $opinion->setStore(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(?string $imageUrl): self
+    {
+        $this->imageUrl = $imageUrl;
 
         return $this;
     }
