@@ -11,6 +11,5 @@ class UserListener
     public function prePersist(User $user, LifecycleEventArgs $event)
     {
         $user->setUpdatedDate(new DateTimeImmutable());
-        $user->setPassword('randomPassword');
     }
 }

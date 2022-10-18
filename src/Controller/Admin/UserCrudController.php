@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\HiddenField;
 
 class UserCrudController extends AbstractCrudController
@@ -25,6 +26,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('firstName'),
             TextField::new('userName'),
             EmailField::new('email'),
+            ArrayField::new('roles'),
             TelephoneField::new('phoneNumber'),
             DateTimeField::new('createdDate')->setDisabled(),
             DateTimeField::new('updatedDate')->setDisabled(),

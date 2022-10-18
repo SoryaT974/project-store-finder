@@ -24,7 +24,7 @@ class StoreCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name'),
-            SlugField::new('slug'),
+            SlugField::new('slug')->setTargetFieldName('slug'),
             TextEditorField::new('description'),
             ImageField::new('imageUrl')->setBasePath('uploads/')->setUploadDir('public/uploads/'),
             TelephoneField::new('phoneNumber'),

@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annuaire de magasins de reptiles{% endblock %}
+
+{% block body %}
+    <header class="header-container">
+        <div class="header">
+            <div class="header-logo">
+                <a href="">
+                    <img src="{{ asset('images/logo-white.png') }}" alt="">
+                </a>
+            </div>
+            <div class="header-nav">
+                <nav id="header-nav">
+                    <ul class="heaver-nav-list">
+                        <li>
+                            <a href="">
+                                Accueil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                A propos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                            <span class="icon person">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                                Connexion
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                            <span class="icon heart">
+                                <i class="fa-solid fa-heart"></i>
+                            </span>
+                                Mes selections
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    {# <section id="breadcrumb">
+        <div class="breadcrumb">
+            <div class="breadcrumb-container">
+                <ol class="breadcrumb-content">
+                    <li>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section> #}
+    <main>
+        <article class="page-container">
+            <section id="module-search">
+                <div class="bloc-search">
+                    <h1 class="search-title">Trouver un magasin de reptiles</h1>
+                    <div id="search-bar" class="search-bar-stores">
+                        <div class="search-bar">
+                            Search bar
+                        </div>
+                        <div class="search-bar-localisation">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </div>
+                        <button id="button-search" class="search-bar-submit">
+                            Rechercher
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section id="search-result">
+                <h2 class="title-result">Vos magasins de reptiles à proximité (nb magasins)</h2>
+                <div class="list-map-stores">
+                    <div class="list-container">
+                        <ul class="list-stores">
+                            <li class="list-stores-content">
+                                magasin infos
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="map-stores-container">
+                        <div class="map-stores-content">
+                            map
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+    <footer class="footer-container">
+        <div class="footer">
+            <div class="footer-logo">
+                <a href="">
+                    <img src="{{ asset('images/logo-green.png') }}" alt="">
+                </a>
+            </div>
+            <div class="footer-content">
+                <div class="footer-contact">
+                    <h3 class="title-footer">Me contacter</h3>
+                        <address>
+                            <a href="mailto:claire@helloworld.com"><i class="fa-solid fa-envelope icons-footer"></i>projet@mail.com</a><br>
+                            <a href="tel:+33601030507"><i class="fa-solid fa-phone icons-footer"></i>06 00 00 00 00</a>
+                        </address>
+                </div>
+                <div class="footer-social-network">
+                    <h3 class="title-footer">Suivez-moi sur :</h3>
+                    <div class="icons-social-network">
+                            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                            <a href="https://www.pinterest.fr/" target="_blank"><i class="fab fa-pinterest"></i></a>
+                            <a href="https://www.instagram.com/?hl=fr" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
