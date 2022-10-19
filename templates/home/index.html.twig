@@ -10,66 +10,52 @@
                     <img src="{{ asset('images/logo-white.png') }}" alt="">
                 </a>
             </div>
-            <div class="header-nav">
-                <nav id="header-nav">
-                    <ul class="heaver-nav-list">
-                        <li>
-                            <a href="">
-                                Accueil
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                A propos
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                            <span class="icon person">
-                                <i class="fa-solid fa-user"></i>
-                            </span>
-                                Connexion
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                            <span class="icon heart">
-                                <i class="fa-solid fa-heart"></i>
-                            </span>
-                                Mes selections
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            <nav id="header-nav" class="header-nav">
+                <ul class="header-nav-list">
+                    <li>
+                        <a href="">
+                            Accueil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            A propos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                        <span class="icon person">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                            Connexion
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                        <span class="icon heart">
+                            <i class="fa-solid fa-heart"></i>
+                        </span>
+                            Mes selections
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
-    {# <section id="breadcrumb">
-        <div class="breadcrumb">
-            <div class="breadcrumb-container">
-                <ol class="breadcrumb-content">
-                    <li>
-                    </li>
-                </ol>
-            </div>
-        </div>
-    </section> #}
     <main>
         <article class="page-container">
             <section id="module-search">
                 <div class="bloc-search">
                     <h1 class="search-title">Trouver un magasin de reptiles</h1>
-                    <div id="search-bar" class="search-bar-stores">
-                        <div class="search-bar">
-                            Search bar
-                        </div>
-                        <div class="search-bar-localisation">
+                    <form id="search-bar" class="search-bar-stores">
+                        <input id="search-input" class="search-bar-input" type="text" label="search" placeholder="Rechercher un magasin ou une catégorie">
+                        <button class="search-bar-localisation">
                             <i class="fa-solid fa-paper-plane"></i>
-                        </div>
+                        </button>
                         <button id="button-search" class="search-bar-submit">
                             Rechercher
                         </button>
-                    </div>
+                    </form>
                 </div>
             </section>
             <section id="search-result">
@@ -108,11 +94,11 @@
                 </div>
                 <div class="footer-social-network">
                     <h3 class="title-footer">Suivez-moi sur :</h3>
-                    <div class="icons-social-network">
-                            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-square"></i></a>
-                            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter-square"></i></a>
-                            <a href="https://www.pinterest.fr/" target="_blank"><i class="fab fa-pinterest"></i></a>
-                            <a href="https://www.instagram.com/?hl=fr" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <div class="footer-icons">
+                            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-square icons-social-network"></i></a>
+                            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter-square icons-social-network"></i></a>
+                            <a href="https://www.pinterest.fr/" target="_blank"><i class="fab fa-pinterest icons-social-network"></i></a>
+                            <a href="https://www.instagram.com/?hl=fr" target="_blank"><i class="fab fa-instagram icons-social-network"></i></a>
                     </div>
                 </div>
             </div>

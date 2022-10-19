@@ -49,11 +49,15 @@ class Store
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageUrl = null;
 
+    #[ORM\OneToMany(mappedBy: 'store', targetEntity: Favorite::class)]
+    private Collection $favorites;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->opinions = new ArrayCollection();
         $this->createdDate = new DateTimeImmutable();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -224,6 +228,36 @@ class Store
     public function setImageUrl(?string $imageUrl): self
     {
         $this->imageUrl = $imageUrl;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favorite>
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Favorite $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites->add($favorite);
+            $favorite->setStore($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favorite $favorite): self
+    {
+        if ($this->favorites->removeElement($favorite)) {
+            // set the owning side to null (unless already changed)
+            if ($favorite->getStore() === $this) {
+                $favorite->setStore(null);
+            }
+        }
 
         return $this;
     }

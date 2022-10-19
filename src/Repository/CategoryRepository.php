@@ -39,6 +39,18 @@ class CategoryRepository extends ServiceEntityRepository
         }
     }
 
+    public function searchByName(string $value) 
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.name LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('c.name', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Category[] Returns an array of Category objects
 //     */

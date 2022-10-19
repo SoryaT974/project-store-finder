@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Store;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Category;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Store>
@@ -37,6 +38,19 @@ class StoreRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findByCategory(Category $category)
+    {
+        return $this->createQueryBuilder('s')
+            ->innerJoin('s.categories', 'c')
+            ->andWhere('c.id = :id')
+            ->setParameter('id', $category->getId())
+            ->orderBy('s.name', 'ASC')
+            ->setMaxResults(20)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
 //    /**
