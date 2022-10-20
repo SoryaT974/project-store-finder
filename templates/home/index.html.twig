@@ -47,30 +47,30 @@
             <section id="module-search">
                 <div class="bloc-search">
                     <h1 class="search-title">Trouver un magasin de reptiles</h1>
-                    <form id="search-bar" class="search-bar-stores">
-                        <input id="search-input" class="search-bar-input" type="text" label="search" placeholder="Rechercher un magasin ou une catégorie">
-                        <button class="search-bar-localisation">
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
-                        <button id="button-search" class="search-bar-submit">
-                            Rechercher
-                        </button>
-                    </form>
+                    <div class="search-store-result">
+                        <form id="search-bar" class="search-bar-stores">
+                            <input id="search-input" class="search-bar-input" type="text" label="search" placeholder="Rechercher un magasin ou une catégorie">
+                            <button class="search-bar-localisation">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                            <button id="button-search" class="search-bar-submit">
+                                Rechercher
+                            </button>
+                        </form>
+                        <div id="search-vue">
+                        </div>
+                    </div>
                 </div>
             </section>
             <section id="search-result">
                 <h2 class="title-result">Vos magasins de reptiles à proximité (nb magasins)</h2>
                 <div class="list-map-stores">
-                    <div class="list-container">
-                        <ul class="list-stores">
-                            <li class="list-stores-content">
-                                magasin infos
-                            </li>
-                        </ul>
+                    <div id="vue-store" class="list-container">
+                        
                     </div>
                     <div class="map-stores-container">
-                        <div class="map-stores-content">
-                            map
+                        <div id="vue-map" class="map-stores-content">
+                            
                         </div>
                     </div>
                 </div>

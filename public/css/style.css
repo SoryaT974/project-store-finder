@@ -127,6 +127,9 @@ a {
     list-style-type:none;
     color: black;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .map-stores-container {

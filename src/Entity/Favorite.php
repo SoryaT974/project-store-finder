@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\FavoriteRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\FavoriteRepository;
 
 #[ORM\Entity(repositoryClass: FavoriteRepository::class)]
 class Favorite
@@ -23,6 +24,12 @@ class Favorite
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdDate = null;
+
+    public function __construct()
+    {
+        $this->createdDate = new DateTimeImmutable();
+    }
+
 
     public function getId(): ?int
     {
