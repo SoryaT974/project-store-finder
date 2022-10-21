@@ -5,8 +5,12 @@ namespace App\Entity;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\FavoriteRepository;
+use Doctrine\ORM\Mapping\UniqueConstraint;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: FavoriteRepository::class)]
+#[UniqueEntity(fields: ['store', 'user'])]
 class Favorite
 {
     #[ORM\Id]
@@ -20,6 +24,7 @@ class Favorite
 
     #[ORM\ManyToOne(inversedBy: 'favorites')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['favorite'])]
     private ?Store $store = null;
 
     #[ORM\Column]

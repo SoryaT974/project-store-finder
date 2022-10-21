@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AddressRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: AddressRepository::class)]
 class Address
@@ -30,6 +31,7 @@ class Address
 
     #[ORM\OneToOne(inversedBy: 'address', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Ignore]
     private ?Store $store = null;
 
     public function getId(): ?int

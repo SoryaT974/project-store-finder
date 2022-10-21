@@ -29,7 +29,7 @@ class FavoriteController extends AbstractController
         
         $favorites = $favoriteRepository->findBy(['user' => $user]);
 
-        return new JsonResponse($serializer->serialize($favorites, 'json'));
+        return new JsonResponse($serializer->serialize($favorites, 'json', ['groups' => ['favorite']]));
     }
 
     #[Route('/add-favorite/{store}', name: 'app_add_favorite')]
@@ -50,8 +50,7 @@ class FavoriteController extends AbstractController
         /** @var User */
         $user = $this->getUser();
         $favorite = $favoriteRepository->findOneBy(['store' => $store, 'user' => $user]);
-        
-        $favoriteRepository->remove($favorite);
+        $favoriteRepository->remove($favorite, true);
 
         return new JsonResponse('OK');
     }

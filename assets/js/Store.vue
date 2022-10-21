@@ -1,35 +1,60 @@
 <template>
-    <ul class="list-stores" v-if="!loading && stores.length > 0">
-        <li class="list-stores-content" v-for="store of stores">
-            <div class="icon-favorites" v-on:click="changeFavorite(store)">
-                <i class="fa-heart" v-bind:class="{ 'fa-regular': !store.favorite, 'fa-solid' : store.favorite}"></i>
-            </div>
-            <div class="stores-info">
-                <img :src="store.imageUrl">
-                {{ store.name }}
-                {{ store.address }}
-                {{ store.phoneNumber }}
-                {{ store.categories }}
-                <!-- {{ store.description }} -->
-                {{ store.schedule }}
-            </div>
-        </li>
-    </ul>
-
-    <div v-if="loading">
-        <i class="fa-solid fa-spinner"></i>
+    <div v-if="store">
+        {{ storage.store.name }}
     </div>
-
-    <div v-if="!loading && stores.length == 0">
-        Aucun résultat !
+    <div class="list-container">
+        <ul class="list-stores" v-if="!loading && stores.length > 0">
+            <li class="list-stores-content" v-for="store of stores">
+                <div class="icon-favorites" v-on:click="changeFavorite(store)">
+                    <i class="fa-heart" v-bind:class="{ 'fa-regular': !store.favorite, 'fa-solid' : store.favorite}"></i>
+                </div>
+                <div class="stores-info" v-on:click="storage.setStore(store)">
+                    <img :src="store.imageUrl">
+                    {{ store.name }}
+                    <div>
+                        {{ store.address.streetNumber }} {{ store.address.streetName }}<br/>
+                        {{ store.address.city }}<br/>
+                        {{ store.address.postalCode }}<br/>
+                        {{ store.address.country }}
+                    </div>
+                    {{ store.phoneNumber }}
+                    {{ store.categories }}
+                    <!-- {{ store.description }} -->
+                    <div v-for="schedule of store.schedule">
+                        {{ schedule }}
+                    </div>
+                </div>
+            </li>
+        </ul>
+    
+        <div v-if="loading">
+            <i class="fa-solid fa-spinner"></i>
+        </div>
+    
+        <div v-if="!loading && stores.length == 0">
+            Aucun résultat !
+        </div>
+                        
+    </div>
+    <div class="map-stores-container">
+        <div class="map-stores-content">
+            <Map stores="stores"/>
+        </div>
     </div>
 </template>
 <script>
     import { ref, onMounted } from 'vue';
+    import Map from './Map.vue';
+    import { storage } from '../app.js';
+
     export default {
+        components: {
+            Map
+        },
         setup() {
             const favorites = ref([]);
             const stores = ref([]);
+            const store = ref(null);
             const loading = ref(true);
 
             function fetchStores() {
@@ -38,9 +63,9 @@
                     return response.json();
                 }).then((data) => {
                     stores.value = JSON.parse(data);
-                    console.log(stores);
                 }).then(() => {
                     loading.value = false;
+                    fetchFavorites();
                 });
             }
 
@@ -50,16 +75,18 @@
                     return response.json();
                 }).then((data) => {
                     favorites.value = JSON.parse(data);
-                    console.log(favorites);
                 }).then(() => {
                     loading.value = false;
+                    bindFavoritesOnStores();
                 });
             }
 
             function bindFavoritesOnStores() {
                 stores.value.forEach(store => {
                     favorites.value.forEach(favorite => {
-                        if (favorite.storeId == store.id) {
+                        console.log(favorite.store);
+                        console.log(store.id);
+                        if (favorite.store.id == store.id) {
                             store.favorite = true;
                         } else {
                             store.favorite = false;
@@ -70,14 +97,12 @@
 
             onMounted(() => {
                 fetchStores();
-                fetchFavorites();
-                bindFavoritesOnStores();
-                console.log(stores);
             });            
 
             return {
                 stores,
                 loading,
+                store,
             }
         },
         methods: {
@@ -108,6 +133,9 @@
                     this.removeFavorite(store);
                 }
             },
+        },
+        data() {
+            return {storage};
         }
     }
 </script>

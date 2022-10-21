@@ -7,10 +7,10 @@
         <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-overlay :position="[40,40]">
+    <ol-overlay v-if="storage.store" :store="storage.store" :position="[storage.store.longitude, storage.store.latitude]">
         <template v-slot="slotProps">
             <div class="overlay-content">
-                Hello world!<br>
+                {{ storage.store.name }} <br>
                 Position: {{ slotProps.position }}
             </div>
         </template>
@@ -23,11 +23,14 @@
 import {
   ref
 } from 'vue'
+import { storage } from '../app.js'
+
 export default {
+    props: ['stores'],
     setup() {
-        const center = ref([40, 40])
+        const center = ref([4.85, 45.75])
         const projection = ref('EPSG:4326')
-        const zoom = ref(8)
+        const zoom = ref(11)
         const rotation = ref(0)
         
         return {
@@ -38,9 +41,7 @@ export default {
         }
     },
     data() {
-        return [
-            {stores: ['store 1', 'store 2']}
-        ]
+        return {storage};
     }
 }
 </script>

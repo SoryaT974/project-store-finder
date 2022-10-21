@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\StoreRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: StoreRepository::class)]
 class Store
@@ -14,6 +16,7 @@ class Store
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['favorite'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -50,7 +53,14 @@ class Store
     private ?string $imageUrl = null;
 
     #[ORM\OneToMany(mappedBy: 'store', targetEntity: Favorite::class)]
+    #[Ignore]
     private Collection $favorites;
+
+    #[ORM\Column]
+    private ?float $latitude = null;
+
+    #[ORM\Column]
+    private ?float $longitude = null;
 
     public function __construct()
     {
@@ -58,6 +68,11 @@ class Store
         $this->opinions = new ArrayCollection();
         $this->createdDate = new DateTimeImmutable();
         $this->favorites = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -258,6 +273,30 @@ class Store
                 $favorite->setStore(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(float $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(float $longitude): self
+    {
+        $this->longitude = $longitude;
 
         return $this;
     }
