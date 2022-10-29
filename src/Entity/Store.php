@@ -44,6 +44,7 @@ class Store
     private ?Address $address = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'stores')]
+    #[Ignore]
     private Collection $categories;
 
     #[ORM\OneToMany(mappedBy: 'store', targetEntity: Opinion::class)]

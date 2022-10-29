@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 
 class StoreCrudController extends AbstractCrudController
@@ -24,11 +25,13 @@ class StoreCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name'),
-            SlugField::new('slug')->setTargetFieldName('slug'),
             TextEditorField::new('description'),
+            AssociationField::new('categories'),
             ImageField::new('imageUrl')->setBasePath('uploads/')->setUploadDir('public/uploads/'),
             TelephoneField::new('phoneNumber'),
             ArrayField::new('schedule'),
+            NumberField::new('latitude'),
+            NumberField::new('longitude'),
             DateTimeField::new('createdDate')->setDisabled(),
             DateTimeField::new('updatedDate')->setDisabled(),
         ];

@@ -1,6 +1,6 @@
 <template>
     <div v-if="store">
-        {{ storage.store.name }}
+        {{ globalStore.store.name }}
     </div>
     <div class="list-container">
         <ul class="list-stores" v-if="!loading && stores.length > 0">
@@ -8,7 +8,7 @@
                 <div class="icon-favorites" v-on:click="changeFavorite(store)">
                     <i class="fa-heart" v-bind:class="{ 'fa-regular': !store.favorite, 'fa-solid' : store.favorite}"></i>
                 </div>
-                <div class="stores-info" v-on:click="storage.setStore(store)">
+                <div class="stores-info" v-on:click="globalStore.setStore(store)">
                     <img :src="store.imageUrl">
                     {{ store.name }}
                     <div>
@@ -45,7 +45,7 @@
 <script>
     import { ref, onMounted } from 'vue';
     import Map from './Map.vue';
-    import { storage } from '../app.js';
+    import { globalStore, globalCategory } from '../app.js';
 
     export default {
         components: {
@@ -133,9 +133,35 @@
                     this.removeFavorite(store);
                 }
             },
+            fetchStoresByCategory(category) {
+                this.loading = true;
+                fetch('/stores-by-category/'+category.id)
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                }) .then((data) => {
+                    this.stores = JSON.parse(data);
+                    this.loading = false;
+                })
+            }
         },
         data() {
-            return {storage};
+            return {
+                globalCategory,
+                globalStore
+            };
+        },
+        watch: {
+            globalCategory: {
+                handler(newCategory) {
+                    console.log(newCategory);
+                    if (newCategory !== undefined) {
+                        this.fetchStoresByCategory(newCategory.category);
+                    }
+                },
+                deep: true,
+            }
         }
     }
 </script>

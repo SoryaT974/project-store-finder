@@ -8,17 +8,19 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 
-import OpenLayersMap from 'vue3-openlayers'
-import 'vue3-openlayers/dist/vue3-openlayers.css'
-import { reactive } from 'vue'
+import OpenLayersMap from 'vue3-openlayers';
+import 'vue3-openlayers/dist/vue3-openlayers.css';
+import { reactive } from 'vue';
 
-export const storage = reactive({
+export const globalStore = reactive({
     store: null,
     setStore(store) {
         this.store = store;
-        console.log(this.store);
     }
-})
+});
+export const globalCategory = reactive({
+    category: null,
+});
 
 import { createApp } from 'vue';
 import Map from './js/Map.vue';
@@ -33,4 +35,3 @@ app.mount('#vue-store');
 import Search from './js/Search.vue';
 
 createApp(Search).mount('#search-vue');
-

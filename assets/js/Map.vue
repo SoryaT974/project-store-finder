@@ -7,10 +7,10 @@
         <ol-source-osm />
     </ol-tile-layer>
 
-    <ol-overlay v-if="storage.store" :store="storage.store" :position="[storage.store.longitude, storage.store.latitude]">
+    <ol-overlay v-if="globalStore.store" :store="globalStore.store" :position="[globalStore.store.longitude, globalStore.store.latitude]">
         <template v-slot="slotProps">
             <div class="overlay-content">
-                {{ storage.store.name }} <br>
+                {{ globalStore.store.name }} <br>
                 Position: {{ slotProps.position }}
             </div>
         </template>
@@ -23,7 +23,7 @@
 import {
   ref
 } from 'vue'
-import { storage } from '../app.js'
+import { globalStore } from '../app.js'
 
 export default {
     props: ['stores'],
@@ -41,7 +41,7 @@ export default {
         }
     },
     data() {
-        return {storage};
+        return {globalStore};
     }
 }
 </script>
