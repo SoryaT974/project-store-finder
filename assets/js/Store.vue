@@ -109,8 +109,14 @@
                     if (response.ok) {
                         return response.json();
                     }
+
+                    if (response.status === 401 || response.status === 403) {
+                        throw new Error('Not connected')
+                    }
                 }).then(() => {
                     store.favorite = true;
+                }).catch((error) => {
+                    alert("Merci de vous connecter avant d'utiliser les favoris.");
                 })
             },
             removeFavorite(store) {
