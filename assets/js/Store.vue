@@ -38,7 +38,7 @@
     </div>
     <div class="map-stores-container">
         <div class="map-stores-content">
-            <Map stores="stores"/>
+            <Map :stores="stores"/>
         </div>
     </div>
 </template>
@@ -84,8 +84,6 @@
             function bindFavoritesOnStores() {
                 stores.value.forEach(store => {
                     favorites.value.forEach(favorite => {
-                        console.log(favorite.store);
-                        console.log(store.id);
                         if (favorite.store.id == store.id) {
                             store.favorite = true;
                         } else {
@@ -102,8 +100,7 @@
             return {
                 stores,
                 loading,
-                store,
-            }
+                store            }
         },
         methods: {
             addFavorite(store) {
@@ -144,7 +141,7 @@
                     this.stores = JSON.parse(data);
                     this.loading = false;
                 })
-            }
+            },
         },
         data() {
             return {
@@ -155,7 +152,6 @@
         watch: {
             globalCategory: {
                 handler(newCategory) {
-                    console.log(newCategory);
                     if (newCategory !== undefined) {
                         this.fetchStoresByCategory(newCategory.category);
                     }

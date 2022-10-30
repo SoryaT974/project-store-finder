@@ -19,6 +19,9 @@ class EmailVerifier
     ) {
     }
 
+    /**
+     * @param User $user 
+     */
     public function sendEmailConfirmation(string $verifyEmailRouteName, UserInterface $user, TemplatedEmail $email): void
     {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
@@ -39,6 +42,8 @@ class EmailVerifier
     }
 
     /**
+     * @param User $user 
+     *
      * @throws VerifyEmailExceptionInterface
      */
     public function handleEmailConfirmation(Request $request, UserInterface $user): void

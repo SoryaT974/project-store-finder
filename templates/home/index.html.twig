@@ -3,45 +3,6 @@
 {% block title %}Annuaire de magasins de reptiles{% endblock %}
 
 {% block body %}
-    <header class="header-container">
-        <div class="header">
-            <div class="header-logo">
-                <a href="">
-                    <img src="{{ asset('images/logo-white.png') }}" alt="">
-                </a>
-            </div>
-            <nav id="header-nav" class="header-nav">
-                <ul class="header-nav-list">
-                    <li>
-                        <a href="">
-                            Accueil
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            A propos
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                        <span class="icon person">
-                            <i class="fa-solid fa-user"></i>
-                        </span>
-                            Connexion
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                        <span class="icon heart">
-                            <i class="fa-solid fa-heart"></i>
-                        </span>
-                            Mes selections
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
     <main>
         <article class="page-container">
             <section id="module-search">
@@ -60,31 +21,4 @@
             </section>
         </article>
     </main>
-    <footer class="footer-container">
-        <div class="footer">
-            <div class="footer-logo">
-                <a href="">
-                    <img src="{{ asset('images/logo-green.png') }}" alt="">
-                </a>
-            </div>
-            <div class="footer-content">
-                <div class="footer-contact">
-                    <h3 class="title-footer">Me contacter</h3>
-                        <address>
-                            <a href="mailto:claire@helloworld.com"><i class="fa-solid fa-envelope icons-footer"></i>projet@mail.com</a><br>
-                            <a href="tel:+33601030507"><i class="fa-solid fa-phone icons-footer"></i>06 00 00 00 00</a>
-                        </address>
-                </div>
-                <div class="footer-social-network">
-                    <h3 class="title-footer">Suivez-moi sur :</h3>
-                    <div class="footer-icons">
-                            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-square icons-social-network"></i></a>
-                            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter-square icons-social-network"></i></a>
-                            <a href="https://www.pinterest.fr/" target="_blank"><i class="fab fa-pinterest icons-social-network"></i></a>
-                            <a href="https://www.instagram.com/?hl=fr" target="_blank"><i class="fab fa-instagram icons-social-network"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 {% endblock %}
