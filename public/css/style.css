@@ -83,8 +83,13 @@ a {
 }
 
 .bloc-search {
-    background-color: #EAEAEA;
-    padding-bottom: 5em;
+    background-color: #F0F0F2;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .search-bar-stores {
@@ -92,22 +97,53 @@ a {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    margin: 2em 20em 0 20em;
 }
 
-.search-bar-input, .search-bar-localisation, .search-bar-submit {
-    border: 1px solid #287b2e;
+.search-bar-input, .search-bar-submit {
     padding: 2em;
+}
+
+.search-bar-input, .search-bar-submit, .list-categories {
+    border: 1px solid #287b2e;
+}
+
+.search-bar-submit, .list-categories {
     text-align: center;
 }
 
+.search-bar-input, .search-bar-submit {
+    background-color: #fff;
+}
+
 .search-bar-input {
-    width: 50%;
+    width: 100%;
 }
 
 .search-bar-submit {
-    width: 10%;
+    width: 25%;
     font-weight: bold;
+}
+
+.list-categories {
+    overflow: scroll;
+    margin: 0 20em 5em 20em;
+    border-top: none;
+    padding-left: 0;
+    background-color: #fff;
+}
+
+.search-bar-submit:hover, .list-categories-content:hover, .stores-info:hover, .submit-form-login:hover, .submit-form-register:hover, .submit-form-reset-password:hover {
+    cursor: pointer;
+}
+
+.list-categories-content {
+    padding: 1em 4em;
+}
+
+.list-categories-content:hover {
+    color: #fff;
+    background-color: #ccc;
 }
 
 .list-map-stores {
@@ -116,12 +152,20 @@ a {
     align-items: center;
     margin: 5em;
 }
+.list-container, .map-stores-container  {
+    border: 1px solid black;
+    width: 600px;
+    height: 400px;
+}
 
 .list-container {
-    border: 1px solid black;
-    width: 150px;
-    height: 150px;
+    overflow: scroll;
+    text-align: center;
 }
+
+/* .list-stores {
+    padding-left: 0;
+} */
 
 .list-stores-content {
     list-style-type:none;
@@ -129,13 +173,28 @@ a {
     text-align: center;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
+    padding-bottom: 2em;
 }
 
-.map-stores-container {
-    border: 1px solid black;
-    width: 600px;
-    height: 150px;
+.stores-info {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 2em;
+    border-bottom: 1px solid black;
+    width: 400px;
+}
+
+.stores-info:hover {
+    background-color: #F0F0F2;
+}
+
+.store-name {
+    font-weight: bold;
+}
+
+.icon-favorites {
+    color: #287b2e;
 }
 
 .map-stores-content {
@@ -143,8 +202,70 @@ a {
     text-align: center;
 }
 
+ .bloc-presentation {
+    text-align: center;
+    margin: 4em;
+ }
+
 .footer-container {
     border-top: 1px solid #287b2e;
+}
+
+.info-registration, .form-login, .form-register, .form-reset-password {
+    margin-top: 4em;
+}
+
+.info-registration {
+    text-align: center;
+}
+
+.link-register, .link-reset-password {
+    color: #287b2e;
+}
+
+.label-form-login, .label-form-register, .label-form-reset-password {
+    color: #555;
+}
+
+.label-form-login {
+    margin: 1em auto;
+}
+
+.input-form-login, .submit-form-login, .input-form-register, .submit-form-register, .input-form-reset-password, .submit-form-reset-password {
+    border: 1px solid #ccc;
+    border-radius: 0.25em;
+}
+
+.input-form-login, .input-form-register, .input-form-reset-password {
+    padding: 1em;
+    background-color: #fff;
+}
+
+.submit-form-login, .submit-form-register, .submit-form-reset-password {
+    padding: 1em 4em;
+    margin: 1em auto;
+    background-color: #b7ecbb;
+}
+
+.link-reset-password {
+    margin: 1em auto;
+    font-size: 0.75em;
+}
+
+.input-form-register, .input-form-reset-password {
+    margin-bottom: 1em;
+}
+
+.label-form-reset-password {
+    margin-right: 1em;
+}
+
+.form-login, .form-register, .form-reset-password {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4em;
 }
 
 .footer {

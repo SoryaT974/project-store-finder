@@ -8,6 +8,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="shortcut icon" type="image/png" href="../public/images/logo-green.ico"/>
+        <link rel="apple-touch-icon" href="../public/images/logo-green.ico"/>
         <script src="https://kit.fontawesome.com/b7fb4b74ca.js" crossorigin="anonymous"></script>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -39,12 +41,21 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            {% if app.user %}
+                                <a href="{{ path('app_logout') }}">
+                                <span class="icon person">
+                                    <i class="fa-solid fa-user"></i>
+                                </span>
+                                    Déconnexion
+                                </a>
+                            {% else %}
+                            <a href="{{ path('app_login') }}">
                             <span class="icon person">
                                 <i class="fa-solid fa-user"></i>
                             </span>
                                 Connexion
                             </a>
+                            {% endif %}
                         </li>
                         <li>
                             <a href="">

@@ -1,22 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}Réinitialisation{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-    <h1>Reset your password</h1>
+    <h1 class="title-reset">Réinitialisez votre mot de passe</h1>
+    <h2 class="title-form-reset">Formulaire de réinitialisation de mot de passe</h2>
+        {{ form_start(requestForm, { 'attr': { 'class': 'form-reset-password' }}) }}
+            <div class="input-mail-reset">
+                {{ form_label(requestForm.email, 'Adresse mail', {'label_attr': {'class': 'label-form-reset-password'}} )}}
+                {{ form_widget(requestForm.email, {'attr': {'class': 'input-form-reset-password'}}) }}
+            </div>
+            {{ form_errors(requestForm.email) }}
+    <div class="info-reset-password">
+        <small>
+            Entrer votre adresse mail et nous vous enverrons un lien pour changer votre mot de passe.
+        </small>
+    </div>
 
-    {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
-        <div>
-            <small>
-                Enter your email address and we will send you a
-                link to reset your password.
-            </small>
-        </div>
-
-        <button class="btn btn-primary">Send password reset email</button>
-    {{ form_end(requestForm) }}
+    <button type="submit" class="submit-form-reset-password">Envoyer le lien de réinitialisation</button>
+{{ form_end(requestForm) }}
 {% endblock %}

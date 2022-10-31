@@ -17,10 +17,14 @@ class FavoriteController extends AbstractController
 {
     #[IsGranted('ROLE_USER')]
     #[Route('/favorite', name: 'app_favorite')]
-    public function index(): Response
+    public function index(FavoriteRepository $favoriteRepository): Response
     {
+        $user = $this->getUser();
+        
+        $favorites = $favoriteRepository->findBy(['user' => $user]);
+
         return $this->render('favorite/index.html.twig', [
-            'favorite' => 'FavoriteController',
+            'favorites' => $favorites,
         ]);
     }
 

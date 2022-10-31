@@ -7,20 +7,15 @@
                placeholder="Rechercher un magasin ou une catégorie"
                v-model="search" 
                v-on:keyup="fetchCategories(event, search)">
-        <button class="search-bar-localisation">
-            <i class="fa-solid fa-paper-plane"></i>
-        </button>
-        <button id="button-search" class="search-bar-submit">
+        <button id="button-search" class="search-bar-submit" v-on:click="display">
             Rechercher
         </button>
     </form>
-    <div class="">
-        <ul class="list-categories">
-            <li class="list-categories-content" v-for="category of categories" v-on:click="selectCategory(category)">
-                {{ category.name }}
-            </li>
-        </ul>
-    </div>
+    <ul class="list-categories" v-on:mouseout="undisplay()" v-if="displayed">
+        <li class="list-categories-content" v-for="category of categories" v-on:click="selectCategory(category)">
+            {{ category.name }}
+        </li>
+    </ul>
 </template>
 <script>
     import { ref, onMounted } from 'vue';
@@ -32,7 +27,7 @@
             const category = ref(null);
             const loading = ref(true);
             const search = ref(null);
-
+            const displayed = ref(false);
 
             onMounted(() => {
                 
@@ -42,7 +37,8 @@
                 categories,
                 loading,
                 category,
-                search
+                search,
+                displayed
             }
         },
         methods: {
@@ -52,14 +48,24 @@
                     return response.json();
                 }).then((data) => {
                     this.categories = JSON.parse(data);
+                    this.displayed = true;
                 }).then(() => {
                     this.loading = false;
                 });
             },
-
             selectCategory(category) {
                 this.search = category.name;
+                this.displayed = false;
                 globalCategory.category = category;
+            },
+            undisplay() {
+                this.displayed = false;
+            },
+            display(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                
+                this.displayed = true;
             }
         }
     }

@@ -1,44 +1,43 @@
 <template>
-    <div v-if="store">
-        {{ globalStore.store.name }}
-    </div>
-    <div class="list-container">
-        <ul class="list-stores" v-if="!loading && stores.length > 0">
-            <li class="list-stores-content" v-for="store of stores">
-                <div class="icon-favorites" v-on:click="changeFavorite(store)">
-                    <i class="fa-heart" v-bind:class="{ 'fa-regular': !store.favorite, 'fa-solid' : store.favorite}"></i>
-                </div>
-                <div class="stores-info" v-on:click="globalStore.setStore(store)">
-                    <img :src="store.imageUrl">
-                    {{ store.name }}
-                    <div>
-                        {{ store.address.streetNumber }} {{ store.address.streetName }}<br/>
-                        {{ store.address.city }}<br/>
-                        {{ store.address.postalCode }}<br/>
-                        {{ store.address.country }}
+    <h2 class="title-result">Vos magasins de reptiles à proximité ({{ stores.length }} magasins)</h2>
+    <div class="list-map-stores">
+        <div class="list-container">
+            <ul class="list-stores" v-if="!loading && stores.length > 0">
+                <li class="list-stores-content" v-for="store of stores">
+                    <div class="icon-favorites" v-on:click="changeFavorite(store)">
+                        <i class="fa-heart" v-bind:class="{ 'fa-regular': !store.favorite, 'fa-solid' : store.favorite}"></i>
                     </div>
-                    {{ store.phoneNumber }}
-                    {{ store.categories }}
-                    <!-- {{ store.description }} -->
-                    <div v-for="schedule of store.schedule">
-                        {{ schedule }}
+                    <div class="stores-info" v-on:click="globalStore.setStore(store)">
+                        <img :src="store.imageUrl">
+                        <span class="store-name">{{ store.name }}</span>
+                        <div>
+                            {{ store.address.streetNumber }} {{ store.address.streetName }}<br/>
+                            {{ store.address.city }} {{ store.address.postalCode }}<br/>
+                            {{ store.address.country }}
+                        </div>
+                        {{ store.phoneNumber }}
+                        {{ store.categories }}
+                        <!-- {{ store.description }} -->
+                        <div v-for="schedule of store.schedule">
+                            Horaires : {{ schedule }}
+                        </div>
                     </div>
-                </div>
-            </li>
-        </ul>
-    
-        <div v-if="loading">
-            <i class="fa-solid fa-spinner"></i>
+                </li>
+            </ul>
+        
+            <div v-if="loading">
+                <i class="fa-solid fa-spinner"></i>
+            </div>
+        
+            <div v-if="!loading && stores.length == 0">
+                Aucun résultat !
+            </div>
+                            
         </div>
-    
-        <div v-if="!loading && stores.length == 0">
-            Aucun résultat !
-        </div>
-                        
-    </div>
-    <div class="map-stores-container">
-        <div class="map-stores-content">
-            <Map :stores="stores"/>
+        <div class="map-stores-container">
+            <div class="map-stores-content">
+                <Map :stores="stores"/>
+            </div>
         </div>
     </div>
 </template>
@@ -82,12 +81,10 @@
             }
 
             function bindFavoritesOnStores() {
-                stores.value.forEach(store => {
+                stores.value.forEach(storeElem => {
                     favorites.value.forEach(favorite => {
-                        if (favorite.store.id == store.id) {
-                            store.favorite = true;
-                        } else {
-                            store.favorite = false;
+                        if (favorite.store.id == storeElem.id) {
+                            storeElem.favorite = true;
                         }
                     });
                 });
