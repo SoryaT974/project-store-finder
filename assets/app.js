@@ -23,7 +23,6 @@ export const globalCategory = reactive({
 });
 
 import { createApp } from 'vue';
-import Map from './js/Map.vue';
 
 import Store from './js/Store.vue';
 

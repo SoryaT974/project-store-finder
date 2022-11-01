@@ -8,8 +8,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
-        <link rel="shortcut icon" type="image/png" href="../public/images/logo-green.ico"/>
-        <link rel="apple-touch-icon" href="../public/images/logo-green.ico"/>
+        <link rel="shortcut icon" type="image/png" href="{{ asset('/images/logo-green.ico') }}"/>
+        <link rel="apple-touch-icon" href="{{ asset('/images/logo-green.ico') }}"/>
         <script src="https://kit.fontawesome.com/b7fb4b74ca.js" crossorigin="anonymous"></script>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -44,7 +44,7 @@
                             {% if app.user %}
                                 <a href="{{ path('app_logout') }}">
                                 <span class="icon person">
-                                    <i class="fa-solid fa-user"></i>
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 </span>
                                     Déconnexion
                                 </a>
@@ -56,9 +56,17 @@
                                 Connexion
                             </a>
                             {% endif %}
+                            {# {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('admin') }}">
+                                <span class="icon person">
+                                    <i class="fa-solid fa-user"></i>
+                                </span>
+                                    Dashboard
+                                </a>
+                            {% endif %} #}
                         </li>
                         <li>
-                            <a href="">
+                            <a href="{{ path('app_favorite') }}">
                             <span class="icon heart">
                                 <i class="fa-solid fa-heart"></i>
                             </span>

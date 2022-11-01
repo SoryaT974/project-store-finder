@@ -6,11 +6,11 @@ use App\Entity\User;
 use App\Entity\Store;
 use App\Entity\Favorite;
 use App\Repository\FavoriteRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FavoriteController extends AbstractController
@@ -52,6 +52,18 @@ class FavoriteController extends AbstractController
     }
 
     #[IsGranted('ROLE_USER')]
+    #[Route('/remove-ajax-favorite/{store}', name: 'app_ajax_remove_favorite')]
+    public function removeAjaxFavorite(Store $store, FavoriteRepository $favoriteRepository) 
+    {
+        /** @var User */
+        $user = $this->getUser();
+        $favorite = $favoriteRepository->findOneBy(['store' => $store, 'user' => $user]);
+        $favoriteRepository->remove($favorite, true);
+
+        return new JsonResponse('OK');
+    }
+
+    #[IsGranted('ROLE_USER')]
     #[Route('/remove-favorite/{store}', name: 'app_remove_favorite')]
     public function removeFavorite(Store $store, FavoriteRepository $favoriteRepository) 
     {
@@ -60,6 +72,6 @@ class FavoriteController extends AbstractController
         $favorite = $favoriteRepository->findOneBy(['store' => $store, 'user' => $user]);
         $favoriteRepository->remove($favorite, true);
 
-        return new JsonResponse('OK');
+        return $this->redirectToRoute('app_favorite');
     }
 }

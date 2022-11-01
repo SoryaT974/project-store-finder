@@ -71,7 +71,6 @@ export default {
         stores: 
         {
             handler(newValue) {
-                console.log(newValue);
                 this.storesCoordinates = [];
                 let totalLatitude = 0;
                 let totalLongitude = 0;
@@ -87,7 +86,6 @@ export default {
         },
         globalStore: {
             handler(newValue) {
-                console.log(newValue);
                 this.zoom = 11;
                 this.center = [newValue.store.longitude, newValue.store.latitude];
             },

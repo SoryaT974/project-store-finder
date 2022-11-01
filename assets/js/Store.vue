@@ -8,7 +8,6 @@
                         <i class="fa-heart" v-bind:class="{ 'fa-regular': !store.favorite, 'fa-solid' : store.favorite}"></i>
                     </div>
                     <div class="stores-info" v-on:click="globalStore.setStore(store)">
-                        <img :src="store.imageUrl">
                         <span class="store-name">{{ store.name }}</span>
                         <div>
                             {{ store.address.streetNumber }} {{ store.address.streetName }}<br/>
@@ -17,7 +16,6 @@
                         </div>
                         {{ store.phoneNumber }}
                         {{ store.categories }}
-                        <!-- {{ store.description }} -->
                         <div v-for="schedule of store.schedule">
                             Horaires : {{ schedule }}
                         </div>
@@ -117,7 +115,7 @@
                 })
             },
             removeFavorite(store) {
-                fetch('/remove-favorite/'+store.id)
+                fetch('/remove-ajax-favorite/'+store.id)
                 .then((response) => {
                     if (response.ok) {
                         return response.json();

@@ -42,7 +42,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Project Store Finder');
+            ->setTitle('Reptiles Stores Finder');
     }
 
     public function configureMenuItems(): iterable
@@ -52,5 +52,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Stores', 'fas fa-list', Store::class);
         yield MenuItem::linkToCrud('Users', 'fas fa-list', User::class);
         yield MenuItem::linkToCrud('Addresses', 'fas fa-list', Address::class);
+        yield MenuItem::linkToRoute('Site', 'fa fa-globe', 'home');
     }
 }

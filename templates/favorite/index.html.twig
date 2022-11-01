@@ -6,11 +6,20 @@
     <main>
         <h1 class="title-favorites">Mes sélections</h1>
         <h2 class="title-list-favorites">Ma liste de magasins favoris</h2>
-        {% for favorite in favorites %}
-            <div class="favorite">
-                {{ favorite.store.name }}
-                {{ favorite.store.address.streetNumber }}
-            </div>
-        {% endfor %}
+        <ul class="favorite">
+            {% for favorite in favorites %}
+                <li class="list-favorites">
+                    <div class="favorites-stores-info">
+                        <span class="favorite-store-name">{{ favorite.store.name }}</span>
+                        <p>{{ favorite.store.address.streetNumber }} {{ favorite.store.address.streetName }}</p>
+                        <p>{{ favorite.store.address.city }} {{ favorite.store.address.postalCode }}</p>
+                        <p>{{ favorite.store.address.country }}</p>
+                    </div>
+                    <div class="icon-delete-favorite-store">
+                        <a href="{{ path('app_remove_favorite', {'store': favorite.store.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
     </main>
 {% endblock %}

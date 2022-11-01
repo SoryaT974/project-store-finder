@@ -84,6 +84,7 @@ a {
 
 .bloc-search {
     background-color: #F0F0F2;
+    padding: 5em 0;
 }
 
 .search {
@@ -127,13 +128,19 @@ a {
 
 .list-categories {
     overflow: scroll;
-    margin: 0 20em 5em 20em;
+    margin: 0 20em;
     border-top: none;
     padding-left: 0;
     background-color: #fff;
 }
 
-.search-bar-submit:hover, .list-categories-content:hover, .stores-info:hover, .submit-form-login:hover, .submit-form-register:hover, .submit-form-reset-password:hover {
+.search-bar-submit:hover, 
+.list-categories-content:hover, 
+.stores-info:hover, 
+.submit-form-login:hover, 
+.submit-form-register:hover, 
+.submit-form-reset-password:hover,
+.icon-favorites:hover {
     cursor: pointer;
 }
 
@@ -153,7 +160,7 @@ a {
     margin: 5em;
 }
 .list-container, .map-stores-container  {
-    border: 1px solid black;
+    border: 1px solid #ccc;
     width: 600px;
     height: 400px;
 }
@@ -163,9 +170,9 @@ a {
     text-align: center;
 }
 
-/* .list-stores {
+.list-stores {
     padding-left: 0;
-} */
+}
 
 .list-stores-content {
     list-style-type:none;
@@ -173,15 +180,17 @@ a {
     text-align: center;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     padding-bottom: 2em;
+    margin: 1em 2em;
 }
 
 .stores-info {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 2em;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #ccc;
     width: 400px;
 }
 
@@ -266,6 +275,32 @@ a {
     align-items: center;
     justify-content: center;
     margin-bottom: 4em;
+}
+
+.favorite {
+    padding-left: 0;
+    text-align: center;
+    margin: 4em auto;
+}
+
+.list-favorites {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 2em;
+}
+
+.favorites-stores-info {
+    width: 400px;
+}
+
+.favorite-store-name {
+    font-weight: bold;
+}
+
+.fa-trash {
+    color: #287b2e;
 }
 
 .footer {

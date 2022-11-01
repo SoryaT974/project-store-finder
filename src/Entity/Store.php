@@ -47,13 +47,10 @@ class Store
     #[Ignore]
     private Collection $categories;
 
-    #[ORM\OneToMany(mappedBy: 'store', targetEntity: Opinion::class)]
-    private Collection $opinions;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageUrl = null;
 
-    #[ORM\OneToMany(mappedBy: 'store', targetEntity: Favorite::class)]
+    #[ORM\OneToMany(mappedBy: 'store', targetEntity: Favorite::class, orphanRemoval: true)]
     #[Ignore]
     private Collection $favorites;
 
@@ -66,7 +63,6 @@ class Store
     public function __construct()
     {
         $this->categories = new ArrayCollection();
-        $this->opinions = new ArrayCollection();
         $this->createdDate = new DateTimeImmutable();
         $this->favorites = new ArrayCollection();
     }
@@ -202,36 +198,6 @@ class Store
     public function removeCategory(Category $category): self
     {
         $this->categories->removeElement($category);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Opinion>
-     */
-    public function getOpinions(): Collection
-    {
-        return $this->opinions;
-    }
-
-    public function addOpinion(Opinion $opinion): self
-    {
-        if (!$this->opinions->contains($opinion)) {
-            $this->opinions->add($opinion);
-            $opinion->setStore($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOpinion(Opinion $opinion): self
-    {
-        if ($this->opinions->removeElement($opinion)) {
-            // set the owning side to null (unless already changed)
-            if ($opinion->getStore() === $this) {
-                $opinion->setStore(null);
-            }
-        }
 
         return $this;
     }
