@@ -1,7 +1,11 @@
+/* *****************************************************************
+GENERAL
+***************************************************************** */
+
 body {
     background-color:#fff;
     font-family: 'Roboto', sans-serif;
-    line-height: 1.2em;
+    line-height: 1.2;
     font-size: 1em;
     color: #151515;
 }
@@ -22,12 +26,11 @@ h2 {
     margin-top: 5em;
 }
 
-.title-footer, .search-bar-localisation, .search-bar-submit, .icons-footer   {
+.title-footer, 
+.search-bar-submit, 
+.icons-footer,
+.header-nav a:hover   {
     color: #287b2e;
-}
-
-.footer-logo img {
-    border-radius: 125px;
 }
 
 img {
@@ -43,9 +46,23 @@ a {
     list-style-type: none;
  }
 
+ .search-bar-submit:hover, 
+.list-categories-content:hover, 
+.stores-info:hover, 
+.submit-form-login:hover, 
+.submit-form-register:hover, 
+.submit-form-reset-password:hover,
+.icon-favorites:hover {
+    cursor: pointer;
+}
+
+ /* *****************************************************************
+HEADER
+***************************************************************** */
+
 .header {
     background-color: #b7ecbb;
-    padding: 1em 5em ;
+    padding: 1em ;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -57,6 +74,7 @@ a {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    padding-left: 0;
 }
 
 .header-nav {
@@ -74,13 +92,16 @@ a {
 
 .header-nav a:hover {
     background-color:#fff;
-    color: #287b2e;
     transition: all 1s;
 }
 
 .icon {
     margin: 0 0.5em;
 }
+
+/* *****************************************************************
+SEARCH
+***************************************************************** */
 
 .bloc-search {
     background-color: #F0F0F2;
@@ -105,7 +126,9 @@ a {
     padding: 2em;
 }
 
-.search-bar-input, .search-bar-submit, .list-categories {
+.search-bar-input, 
+.search-bar-submit, 
+.list-categories {
     border: 1px solid #287b2e;
 }
 
@@ -132,16 +155,7 @@ a {
     border-top: none;
     padding-left: 0;
     background-color: #fff;
-}
-
-.search-bar-submit:hover, 
-.list-categories-content:hover, 
-.stores-info:hover, 
-.submit-form-login:hover, 
-.submit-form-register:hover, 
-.submit-form-reset-password:hover,
-.icon-favorites:hover {
-    cursor: pointer;
+    height: 200px;
 }
 
 .list-categories-content {
@@ -153,8 +167,13 @@ a {
     background-color: #ccc;
 }
 
+/* *****************************************************************
+RESULT SEARCH
+***************************************************************** */
+
 .list-map-stores {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     margin: 5em;
@@ -211,16 +230,27 @@ a {
     text-align: center;
 }
 
+.overlay-content {
+    font-weight: bold;
+}
+
+/* *****************************************************************
+ABOUT
+***************************************************************** */
+
  .bloc-presentation {
     text-align: center;
     margin: 4em;
  }
 
-.footer-container {
-    border-top: 1px solid #287b2e;
-}
+ /* *****************************************************************
+FORM LOGIN, REGISTER AND RESET PASSWORD
+***************************************************************** */
 
-.info-registration, .form-login, .form-register, .form-reset-password {
+.info-registration, 
+.form-login, 
+.form-register, 
+.form-reset-password {
     margin-top: 4em;
 }
 
@@ -232,7 +262,9 @@ a {
     color: #287b2e;
 }
 
-.label-form-login, .label-form-register, .label-form-reset-password {
+.label-form-login, 
+.label-form-register, 
+.label-form-reset-password {
     color: #555;
 }
 
@@ -240,17 +272,26 @@ a {
     margin: 1em auto;
 }
 
-.input-form-login, .submit-form-login, .input-form-register, .submit-form-register, .input-form-reset-password, .submit-form-reset-password {
+.input-form-login, 
+.submit-form-login, 
+.input-form-register, 
+.submit-form-register, 
+.input-form-reset-password, 
+.submit-form-reset-password {
     border: 1px solid #ccc;
     border-radius: 0.25em;
 }
 
-.input-form-login, .input-form-register, .input-form-reset-password {
+.input-form-login, 
+.input-form-register, 
+.input-form-reset-password {
     padding: 1em;
     background-color: #fff;
 }
 
-.submit-form-login, .submit-form-register, .submit-form-reset-password {
+.submit-form-login, 
+.submit-form-register, 
+.submit-form-reset-password {
     padding: 1em 4em;
     margin: 1em auto;
     background-color: #b7ecbb;
@@ -269,13 +310,19 @@ a {
     margin-right: 1em;
 }
 
-.form-login, .form-register, .form-reset-password {
+.form-login, 
+.form-register, 
+.form-reset-password {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-bottom: 4em;
 }
+
+/* *****************************************************************
+PAGE FAVORITE
+***************************************************************** */
 
 .favorite {
     padding-left: 0;
@@ -303,6 +350,10 @@ a {
     color: #287b2e;
 }
 
+/* *****************************************************************
+FOOTER
+***************************************************************** */
+
 .footer {
     padding: 2em;
     display: flex;
@@ -311,11 +362,19 @@ a {
     justify-content: center;
 }
 
+.footer-container {
+    border-top: 1px solid #287b2e;
+}
+
+.footer-logo img {
+    border-radius: 125px;
+}
+
 .footer-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 3em;
+    margin: 3em auto;
 }
 
 .footer-contact, .footer-social-network {
@@ -329,7 +388,7 @@ a {
 address a {
     font-style: normal;
     color: #151515;
-    line-height: 1.2em;
+    line-height: 1.2;
 }
 
 address a:hover {
@@ -356,4 +415,60 @@ address a:hover {
 
 .fa-instagram {
     color: #8948C1;
+}
+
+/* *****************************************************************
+RESPONSIVE
+***************************************************************** */
+
+@media screen and (max-width: 1120px) {
+    .header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .header-nav-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .header-nav a {
+        display: block;
+    }
+
+    .search-bar-stores {
+        margin: 2em auto 0 auto;
+        width: 100%;
+    }
+
+    .list-categories {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .list-map-stores {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .list-container, .map-stores-container {
+        width: 400px;
+    }
+
+    .stores-info {
+        width: 200px;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .footer-contact, .footer-social-network {
+        text-align: center;
+        padding: 1em;
+    }
 }

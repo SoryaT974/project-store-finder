@@ -56,15 +56,17 @@
                                 Connexion
                             </a>
                             {% endif %}
-                            {# {% if is_granted('ROLE_ADMIN') %}
-                                <a href="{{ path('admin') }}">
-                                <span class="icon person">
-                                    <i class="fa-solid fa-user"></i>
-                                </span>
-                                    Dashboard
-                                </a>
-                            {% endif %} #}
                         </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li>
+                            <a href="{{ path('admin') }}">
+                            <span class="icon person">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                                Dashboard
+                            </a>
+                        </li>
+                        {% endif %}
                         <li>
                             <a href="{{ path('app_favorite') }}">
                             <span class="icon heart">
@@ -89,7 +91,7 @@
                     <div class="footer-contact">
                         <h3 class="title-footer">Me contacter</h3>
                             <address>
-                                <a href="mailto:claire@helloworld.com"><i class="fa-solid fa-envelope icons-footer"></i>projet@mail.com</a><br>
+                                <a href="mailto:sorya.that@gmail.com"><i class="fa-solid fa-envelope icons-footer"></i>sorya.that@gmail.com</a><br>
                                 <a href="tel:+33601030507"><i class="fa-solid fa-phone icons-footer"></i>06 00 00 00 00</a>
                             </address>
                     </div>
