@@ -24,8 +24,7 @@
     <ol-overlay v-if="globalStore.store" :store="globalStore.store" :position="[globalStore.store.longitude, globalStore.store.latitude]">
         <template v-slot="slotProps">
             <div class="overlay-content">
-                {{ globalStore.store.name }} <br>
-                Position: {{ slotProps.position }}
+                {{ globalStore.store.name }}
             </div>
         </template>
     </ol-overlay>

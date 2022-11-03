@@ -95,7 +95,8 @@
             return {
                 stores,
                 loading,
-                store            }
+                store            
+            }
         },
         methods: {
             addFavorite(store) {
@@ -106,7 +107,7 @@
                     }
 
                     if (response.status === 401 || response.status === 403) {
-                        throw new Error('Not connected')
+                        throw new Error('Not connected');
                     }
                 }).then(() => {
                     store.favorite = true;
@@ -118,11 +119,15 @@
                 fetch('/remove-ajax-favorite/'+store.id)
                 .then((response) => {
                     if (response.ok) {
-                        return response.json();
+                        return;
+                    } else {
+                        throw new Error('Server error');
                     }
                 }).then(() => {
                     store.favorite = false;
-                })
+                }).catch((error) => {
+                    alert('Désolé, une erreur s\'est produite lors de la suppression du favoris');
+                });
             },
             changeFavorite(store) {
                 if (!store.favorite) {
