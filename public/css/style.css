@@ -150,7 +150,7 @@ SEARCH
 }
 
 .list-categories {
-    overflow: scroll;
+    overflow-y: scroll;
     margin: 0 20em;
     border-top: none;
     padding-left: 0;
@@ -185,7 +185,7 @@ RESULT SEARCH
 }
 
 .list-container {
-    overflow: scroll;
+    overflow-y: scroll;
     text-align: center;
 }
 
